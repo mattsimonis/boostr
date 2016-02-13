@@ -1,0 +1,73 @@
+{
+  "manifest_version": 2,
+  "name": "Boostr for Salesforce",
+  "short_name": "Boostr SF",
+  "version": "0.1",
+  "icons": {
+    "128": "icon.png"
+  },
+  "author": "Matt Simonis",
+  "background": {
+      "scripts": [
+        "js/background.js"
+      ],
+      "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.salesforce.com/*",
+        "https://*.force.com/*",
+        "https://*.cloudforce.com/*"
+      ],
+      "js": [
+        "js/jquery.min.js",
+        "js/scripts.js",
+        "js/setupsearch.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*AddToPackageFromChangeMgmtUi*",
+        "https://*.force.com/*AddToPackageFromChangeMgmtUi*",
+        "https://*.cloudforce.com/*AddToPackageFromChangeMgmtUi*"
+      ],
+      "js": [
+        "js/changeset.js"
+      ],
+      "css": [
+        "css/changeset.css"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*FieldSetEditor*",
+        "https://*.force.com/*FieldSetEditor*",
+        "https://*.cloudforce.com/*FieldSetEditor*"
+      ],
+      "js": [
+        "js/fieldset.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*CustomObjects*",
+        "https://*.force.com/*CustomObjects*",
+        "https://*.cloudforce.com/*CustomObjects*",
+        "https://*.salesforce.com/*NewCustomFieldStageManager*",
+        "https://*.force.com/*NewCustomFieldStageManager*",
+        "https://*.cloudforce.com/*NewCustomFieldStageManager*"
+      ],
+      "js": [
+        "js/apiname.js"
+      ]
+    }
+  ],
+  "options_page": "options.html",
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png"
+  }
+}

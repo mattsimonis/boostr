@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Boostr for Salesforce Options</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1><img src="icon.png" style="height: 50px;padding-right: 10px;" />Boostr for Salesforce</h1>
+
+      <p id="status" class="bg-success" style="padding:15px;display:none;">
+        Options saved.
+      </p>
+
+      <h3>Available Options</h3>
+      <p class="help-block">
+        Toggle available addon functionality. Click the '?' button to see more detail about what each addon does.
+      </p>
+
+      <div class="checkbox">
+        <label>
+          <input id="changeset" type="checkbox" value="">
+          Change Set Assistant
+        </label>
+        <a data-toggle="modal" data-target="#changesetModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input id="fieldset" type="checkbox" value="">
+          Field Set API Names
+        </label>
+        <a data-toggle="modal" data-target="#fieldsetModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input id="setupsearch" type="checkbox" value="">
+          Setup Search
+        </label>
+        <a data-toggle="modal" data-target="#setupsearchModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input id="apiname" type="checkbox" value="">
+          Object/Field API Name
+        </label>
+        <a data-toggle="modal" data-target="#apinameModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
+      <button id="save" type="button" class="btn btn-primary">Save</button>
+    </div>
+
+    <div class="modal fade" id="changesetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Change Set Assistant</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Adds a search bar and type filter to the Salesforce Change Set interface. Using the checkbox in the table header will only check the rows that are visible. Also adds a Show All link above the paging to show all items for the current item type.
+            </p>
+
+            <hr/>
+
+            <img style="max-width: 100%;" src="images/changeset.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="fieldsetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Field Set API Names</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              When adding a field to a Field Set, this will add the API name next to the field name. There is a known Salesforce issue where certain related fields will all display as the same name (eg. BillingAddress or Name instead of BillingStreet and FirstName, respectivly).
+            </p>
+
+            <hr/>
+
+            <img style="max-width: 100%;" src="images/fieldset.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="setupsearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Setup Search</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              In the Setup area in Salesforce, if you try and use the quick search in the left sidebar before the placeholder text is loaded, your text will be appended to the placeholder text and your search will not find what you are looking for. This will prevent the placeholder text from being loaded by default.
+            </p>
+
+            <hr/>
+
+            <img style="max-width: 100%;" src="images/setupsearch.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="apinameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Object/Field API Name</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              When creating a new object or field, this will automatically remove the underscores in the Object/Field Name field (API Name).
+            </p>
+
+            <hr/>
+
+            <img style="max-width: 100%;" src="images/apiname.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/options.js"></script>
+  </body>
+</html>
