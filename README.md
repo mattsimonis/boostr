@@ -10,7 +10,7 @@ This Google Chrome extension aims to boost productivity for Salesforce.com admin
 
 # Installation
 
-[<img src="install-image.png" width="175px">][webstore-url]
+[<img src="install.png" width="175px">][webstore-url]
 
 
 # License
