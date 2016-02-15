@@ -56,7 +56,10 @@
         "https://*.cloudforce.com/*CustomObjects*",
         "https://*.salesforce.com/*NewCustomFieldStageManager*",
         "https://*.force.com/*NewCustomFieldStageManager*",
-        "https://*.cloudforce.com/*NewCustomFieldStageManager*"
+        "https://*.cloudforce.com/*NewCustomFieldStageManager*",
+        "https://*.salesforce.com/*101*",
+        "https://*.force.com/*101*",
+        "https://*.cloudforce.com/*101*"
       ],
       "js": [
         "js/apiname.js"
