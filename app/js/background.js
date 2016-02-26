@@ -1,3 +1,8 @@
-chrome.runtime.onInstalled.addListener(function(object) {
-    chrome.tabs.create({ 'url': 'chrome-extension://' + chrome.runtime.id + '/options.html' });
-});
+var currentVersion = chrome.app.getDetails().version;
+var oldVersion = localStorage['oldVersion'];
+
+if (oldVersion != currentVersion) {
+  if (oldVersion == undefined) { // first run
+    chrome.tabs.create({ 'url': chrome.extension.getURL('options.html') });
+  }
+}
