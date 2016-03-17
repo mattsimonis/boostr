@@ -64,6 +64,16 @@
       "js": [
         "js/apiname.js"
       ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*FieldHistoryTracking*",
+        "https://*.force.com/*FieldHistoryTracking*",
+        "https://*.cloudforce.com/*FieldHistoryTracking*"
+      ],
+      "js": [
+        "js/fieldhistorycount.js"
+      ]
     }
   ],
   "options_page": "options.html",
