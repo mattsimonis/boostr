@@ -1,0 +1,10 @@
+﻿#boostrCheckAllVisible,
+#boostrUncheckAllVisible,
+#boostrCheckAllReadOnly,
+#boostrUncheckAllReadOnly,
+#boostrCheckAllEdit,
+#boostrUncheckAllEdit,
+#boostrCheckAllRead,
+#boostrUncheckAllRead {
+    padding-left: 25px;
+}
