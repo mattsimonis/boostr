@@ -23,7 +23,8 @@
       "js": [
         "js/jquery.min.js",
         "js/scripts.js",
-        "js/setupsearch.js"
+        "js/setupsearch.js",
+        "js/adminlinks.js"
       ]
     },
     {

@@ -11,9 +11,7 @@
     <div class="container">
       <h1><img src="icon.png" style="height: 50px;padding-right: 10px;" />Boostr for Salesforce</h1>
 
-      <p id="status" class="bg-success" style="padding:15px;display:none;">
-        Options saved.
-      </p>
+      <p id="status" class="bg-success" style="padding:15px;display:none;"></p>
 
       <h3>Available Options</h3>
       <p class="help-block">
@@ -47,6 +45,14 @@
           Object/Field API Name
         </label>
         <a data-toggle="modal" data-target="#apinameModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input id="adminlinks" type="checkbox" value="">
+          Frequent Admin Links
+        </label>
+        <a data-toggle="modal" data-target="#adminlinksModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+        <a id="clearadminlinks" title="Clears stored history for admin links" href="#" class="btn btn-danger btn-xs">clear</a>
       </div>
       <button id="save" type="button" class="btn btn-primary">Save</button>
 

@@ -2,6 +2,15 @@ $(function() {
   $('a.modalLink').click(function(e) {
     e.preventDefault();
   });
+  $('a#clearadminlinks').click(function(e) {
+    e.preventDefault();
+    chrome.storage.sync.set({
+      adminlinks: {}
+    }, function() {
+      // Update status to let user know history was cleared.
+      $('#status').text('Admin link history cleared.').show().delay(2000).fadeOut();
+    });
+  });
 });
 
 // Saves options to chrome.storage
@@ -18,11 +27,7 @@ function save_options() {
     apiname: apiname
   }, function() {
     // Update status to let user know options were saved.
-    var status = document.getElementById('status');
-    status.style.display = 'block';
-    setTimeout(function() {
-      status.style.display = 'none';
-    }, 2000);
+    $('#status').text('Options saved.').show().delay(2000).fadeOut();
   });
 }
 
