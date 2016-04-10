@@ -77,6 +77,22 @@
       "js": [
         "js/fieldhistorycount.js"
       ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*setup/layout/flsedit*",
+        "https://*.force.com/*setup/layout/flsedit*",
+        "https://*.cloudforce.com/*setup/layout/flsedit*",
+        "https://*.salesforce.com/*e?s=EntityPermission*",
+        "https://*.force.com/*e?s=EntityPermission*",
+        "https://*.cloudforce.com/*e?s=EntityPermission*"
+      ],
+      "js": [
+        "js/fieldlevelsecurity.js"
+      ],
+      "css": [
+        "css/fieldlevelsecurity.css"
+      ]
     }
   ],
   "options_page": "options.html",
