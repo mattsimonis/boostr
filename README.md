@@ -13,6 +13,26 @@ This Google Chrome extension aims to boost productivity for Salesforce.com admin
 [<img src="install.png" width="175px">][webstore-url]
 
 
+# Release History
+
+##### Latest Release Version 0.5
+***
+
+- Bug - [Field Set API names showing ID for custom and managed package fields](https://github.com/mattsimonis/boostr/issues/15)
+
+
+##### Version 0.4
+***
+
+- Bug - [API Field Name issue fixes](https://github.com/mattsimonis/boostr/issues/12)
+
+
+##### Version 0.3
+***
+
+- Feature - [Show Number of Field History Tracking Items](https://github.com/mattsimonis/boostr/issues/4)
+
+
 # License
 
 THE BOOSTR PROJECT IS NOT AFFILIATED WITH, SPONSORED BY, OR ENDORSED BY SALESFORCE.COM.
