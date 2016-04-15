@@ -2,7 +2,7 @@ var BfsSetupSearch = BfsSetupSearch || {};
 
 BfsSetupSearch.init = function() {
   $(function() {
-    $('div.quickfindContainer input#setupSearch').val(' ').focus();
+    $('div.quickfindContainer input#setupSearch').val(' ');
   });
 }
 

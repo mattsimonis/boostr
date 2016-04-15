@@ -10,14 +10,14 @@ function save_options() {
   var fieldset = document.getElementById('fieldset').checked;
   var setupsearch = document.getElementById('setupsearch').checked;
   var apiname = document.getElementById('apiname').checked;
-  var fieldlevelsecurity = document.getElementById('fieldlevelsecurity').checked;
+  var setupcheckall = document.getElementById('setupcheckall').checked;
   
   chrome.storage.sync.set({
     changeset: changeset,
     fieldset: fieldset,
     setupsearch: setupsearch,
     apiname: apiname,
-    fieldlevelsecurity: fieldlevelsecurity
+    setupcheckall: setupcheckall
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -36,13 +36,13 @@ function restore_options() {
     fieldset: true,
     setupsearch: true,
     apiname: false,
-    fieldlevelsecurity: true
+    setupcheckall: true
   }, function(items) {
     document.getElementById('changeset').checked = items.changeset;
     document.getElementById('fieldset').checked = items.fieldset;
     document.getElementById('setupsearch').checked = items.setupsearch;
     document.getElementById('apiname').checked = items.apiname;
-    document.getElementById('fieldlevelsecurity').checked = items.fieldlevelsecurity;
+    document.getElementById('setupcheckall').checked = items.setupcheckall;
   });
 }
 
