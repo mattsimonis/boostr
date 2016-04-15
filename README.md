@@ -15,7 +15,13 @@ This Google Chrome extension aims to boost productivity for Salesforce.com admin
 
 # Release History
 
-##### Latest Release Version 0.5
+##### Latest Release Version 0.6
+***
+
+- Feature - [Admin area check all for tables](https://github.com/mattsimonis/boostr/issues/3)
+
+
+##### Version 0.5
 ***
 
 - Bug - [Field Set API names showing ID for custom and managed package fields](https://github.com/mattsimonis/boostr/issues/15)
