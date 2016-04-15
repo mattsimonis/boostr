@@ -48,6 +48,13 @@
         </label>
         <a data-toggle="modal" data-target="#apinameModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
       </div>
+      <div class="checkbox">
+        <label>
+          <input id="setupcheckall" type="checkbox" value="">
+          Setup Area Check All
+        </label>
+        <a data-toggle="modal" data-target="#setupcheckallModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
       <button id="save" type="button" class="btn btn-primary">Save</button>
 
       <h3>Additional Features</h3>
@@ -164,6 +171,29 @@
             <hr/>
 
             <img style="max-width: 100%;" src="images/fieldhistory.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="setupcheckallModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Setup Area Check All</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+                When editing settings in the setup area, this will add a checkbox to the header row cells if there is a checkbox in that column. This will allow checking and unchecking all checkboxes in that column.
+            </p>
+
+            <hr />
+
+            <img style="max-width: 100%;" src="images/setupcheckall.png" />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
