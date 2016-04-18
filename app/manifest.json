@@ -28,11 +28,8 @@
         "js/jquery.min.js",
         "js/scripts.js",
         "js/setupsearch.js",
-<<<<<<< HEAD
+        "js/setupcheckall.js",
         "js/adminlinks.js"
-=======
-        "js/setupcheckall.js"
->>>>>>> master
       ]
     },
     {
