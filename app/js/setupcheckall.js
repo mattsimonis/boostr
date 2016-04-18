@@ -1,6 +1,16 @@
 var BfsSetupCheckAll = BfsSetupCheckAll || {};
 
 BfsSetupCheckAll.init = function() {
+  var s = document.createElement('script');
+  s.src = chrome.extension.getURL('js/setupcheckallinject.js');
+  document.head.appendChild(s);
+
+  window.addEventListener('BfsSetupCheckAllEvent', function (e) {
+    BfsSetupCheckAll.dependents = e.detail.dependents;
+    BfsSetupCheckAll.antecedents = e.detail.antecedents;
+    BfsSetupCheckAll.map = e.detail.map;
+  });
+
   $(function() {
     var checkboxTables = [];
 
@@ -18,28 +28,44 @@ BfsSetupCheckAll.init = function() {
     }
 
     $('input.bfs-checkall').on('change', function() {
-      var $table = $(this).closest('table');
+      var $table = $(this).closest('table.bfs-checkall-table');
       var index = $(this).closest('th').index() + 1;
       var checkAll = this.checked;
+      var pattern = /ProfileDependentCheckboxes\.handleClick\(([^,]+),\s+'([^,]+)',\s+'([^,]+)'\)/i;
+
+      var toChange = [];
 
       $('tr td:nth-child(' + index + ') input:checkbox:not(:disabled)', $table)
         .each(function(i, checkbox) {
-          if (checkAll === true && $(checkbox).is(':not(:checked)')) {
-            $(checkbox).click();
-          } else if (checkAll === false && $(checkbox).is(':checked')) {
-            $(checkbox).click();
+          var onclickParts = pattern.exec($(checkbox).attr('onclick'));
+
+          if ((checkAll === true && $(checkbox).is(':not(:checked)')) ||
+              (checkAll === false && $(checkbox).is(':checked'))) {
+            toChange.push($(checkbox));
+
+            var opposites = checkAll ? BfsSetupCheckAll.dependents[onclickParts[3]] :
+              BfsSetupCheckAll.antecedents[onclickParts[3]];
+
+            if (opposites) {
+              for (var j = 0; j < opposites.length; j++) {
+                var opposite = document.getElementById(
+                  BfsSetupCheckAll.map[onclickParts[2]][opposites[j]]);
+                
+                if (opposite) {
+                  toChange.push($(opposite));
+                }
+              }
+            }
           }
         });
+
+      $(toChange).map(function() { return this.toArray(); }).prop('checked', checkAll);
+      BfsSetupCheckAll.setTableHeaderCheckboxes($table);
     });
 
     $('table.bfs-checkall-table td input:checkbox').on('change', function() {
       var $table = $(this).closest('table.bfs-checkall-table');
-      $('tr:eq(0) th input.bfs-checkall', $table).each(function(i, checkbox) {
-        var $checkbox = $(checkbox);
-        var index = $checkbox.parent().index() + 1;
-
-        BfsSetupCheckAll.setCheckboxState($table, $checkbox, index);
-      });
+      BfsSetupCheckAll.setTableHeaderCheckboxes($table);
     });
   });
 };
@@ -94,6 +120,15 @@ BfsSetupCheckAll.addCheckboxToHeaderRow = function(tables) {
   });
 };
 
+BfsSetupCheckAll.setTableHeaderCheckboxes = function($table) {
+  $('tr:eq(0) th input.bfs-checkall', $table).each(function(i, checkbox) {
+    var $checkbox = $(checkbox);
+    var index = $checkbox.parent().index() + 1;
+
+    BfsSetupCheckAll.setCheckboxState($table, $checkbox, index);
+  });
+};
+
 BfsSetupCheckAll.setCheckboxState = function($table, $checkbox, index) {
   var total = $('td:nth-child(' + index + ')', $table)
     .find('input:checkbox:not(:disabled)').size();
@@ -109,6 +144,10 @@ BfsSetupCheckAll.setCheckboxState = function($table, $checkbox, index) {
     $checkbox.prop('indeterminate', true);
   }
 };
+
+BfsSetupCheckAll.dependents = {};
+BfsSetupCheckAll.antecedents = {};
+BfsSetupCheckAll.map = {};
 
 chrome.storage.sync.get({
   'setupcheckall': true

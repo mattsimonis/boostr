@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Boostr for Salesforce",
   "short_name": "Boostr SF",
-  "version": "0.6",
+  "version": "0.7",
   "icons": {
     "128": "icon.png"
   },
@@ -14,7 +14,8 @@
       "persistent": false
   },
   "web_accessible_resources": [
-    "js/fieldsetinject.js"
+    "js/fieldsetinject.js",
+    "js/setupcheckallinject.js"
   ],
   "content_scripts": [
     {
