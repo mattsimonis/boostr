@@ -1,50 +1,50 @@
-var BfsAdminLinks = BfsAdminLinks || {};
+var BfsSetupLinks = BfsSetupLinks || {};
 
-BfsAdminLinks.init = function() {
-  var adminlinks = {};
+BfsSetupLinks.init = function() {
+  var setuplinkshistory = {};
 
   chrome.storage.sync.get({
-    adminlinks: {}
+    setuplinkshistory: {}
   }, function(items) {
-    adminlinks = items.adminlinks;
-    BfsAdminLinks.displayLinks(adminlinks);
+    setuplinkshistory = items.setuplinkshistory;
+    BfsSetupLinks.displayLinks(setuplinkshistory);
   });
 
   $('div#setupNavTree div.setupLeaf a, div#setupNavTree div.setupHighlightLeaf a').on('click', function(e) {
     var $link = $(this);
     var linkId = $link.attr('id');
-    var path = BfsAdminLinks.getPath($(this));
+    var path = BfsSetupLinks.getPath($(this));
 
-    if (adminlinks[linkId] == null) {
-      adminlinks[linkId] = {
+    if (setuplinkshistory[linkId] == null) {
+      setuplinkshistory[linkId] = {
         'clicks': 0
       };
     }
 
-    adminlinks[linkId].clicks += 1;
-    adminlinks[linkId].path = path;
-    adminlinks[linkId].url = $link.attr('href');
+    setuplinkshistory[linkId].clicks += 1;
+    setuplinkshistory[linkId].path = path;
+    setuplinkshistory[linkId].url = $link.attr('href');
 
     chrome.storage.sync.set({
-      adminlinks: adminlinks
+      setuplinkshistory: setuplinkshistory
     });
   });
 }
 
-BfsAdminLinks.getPath = function($link) {
+BfsSetupLinks.getPath = function($link) {
   var path = $link.text();
   var $parentLink = $link.closest('.childContainer').closest('.parent').find('> a.setupFolder');
   if ($parentLink.size() > 0) {
-    path = BfsAdminLinks.getPath($parentLink) + ' > ' + path;
+    path = BfsSetupLinks.getPath($parentLink) + ' > ' + path;
   }
   return path;
 }
 
-BfsAdminLinks.displayLinks = function(adminlinks) {
+BfsSetupLinks.displayLinks = function(setuplinkshistory) {
   var arr = [];
-  for (var prop in adminlinks) {
-    if (adminlinks.hasOwnProperty(prop)) {
-      var obj = adminlinks[prop];
+  for (var prop in setuplinkshistory) {
+    if (setuplinkshistory.hasOwnProperty(prop)) {
+      var obj = setuplinkshistory[prop];
       obj.linkid = prop;
       arr.push(obj);
     }
@@ -58,11 +58,9 @@ BfsAdminLinks.displayLinks = function(adminlinks) {
   $links.append($('<h2/>').text('Most Clicked'));
   $wrapper.append($links);
   for (var i = 0; i < arr.length; i++) {
-    var adminlink = arr[i];
+    var setuplink = arr[i];
     var $linkWrapper = $('<div/>').addClass('setupLeaf').css('white-space', 'normal');
-    var $deleteLink = $('<a/>').attr('href', '#').addClass('bfsclose').text('X');
-    var $link = $('<a/>').attr('href', adminlink.url).text(adminlink.path + ' (' + adminlink.clicks + ')');
-    $linkWrapper.append($deleteLink);
+    var $link = $('<a/>').attr('href', setuplink.url).text(setuplink.path + ' (' + setuplink.clicks + ')');
     $linkWrapper.append($link);
     $wrapper.append($linkWrapper);
   }
@@ -70,11 +68,11 @@ BfsAdminLinks.displayLinks = function(adminlinks) {
 }
 
 chrome.storage.sync.get({
-  'adminquicklinks': true
+  'setuplinks': true
 }, function(item) {
-  if (item.adminquicklinks === true) {
+  if (item.setuplinks === true) {
     if ($('div#setupNavTree').size() > 0) {
-      BfsAdminLinks.init();
+      BfsSetupLinks.init();
     }
   }
 });

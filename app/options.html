@@ -55,11 +55,11 @@
       </div>
       <div class="checkbox">
         <label>
-          <input id="adminlinks" type="checkbox" value="">
-          Frequent Admin Links
+          <input id="setuplinks" type="checkbox" value="">
+          Setup Area Links
         </label>
-        <a data-toggle="modal" data-target="#adminlinksModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
-        <a id="clearadminlinks" title="Clears stored history for admin links" href="#" class="btn btn-danger btn-xs">clear</a>
+        <a data-toggle="modal" data-target="#setuplinksModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+        <a data-toggle="modal" data-target="#setuplinksoptionsModal" href="#" class="modalLink"><span class="glyphicon glyphicon-cog"></span></a>
       </div>
       <button id="save" type="button" class="btn btn-primary">Save</button>
 
@@ -200,6 +200,62 @@
             <hr />
 
             <img style="max-width: 100%;" src="images/setupcheckall.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="setuplinksModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Setup Area Links</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+                Keeps track of your most clicked links in the setup area and shows to top ones in the top of the sidebar for easy access.
+            </p>
+
+            <hr />
+
+            <img style="max-width: 100%;" src="images/setupcheckall.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="setuplinksoptionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Setup Area Links Options</h4>
+          </div>
+          <div class="modal-body">
+            <table id="setuplinks-table" class="table">
+              <thead>
+                <tr>
+                  <th class="col-md-2"></th>
+                  <th class="col-md-2">Clicks</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <td>
+                  <a href="#" class="setuplink-pin"><span class="glyphicon glyphicon-pushpin"></span></a>
+                  <a href="#" class="setuplink-remove"><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+                <td>2</td>
+                <td>Develop > Apex Classes</td>
+              </tbody>
+            </table>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
