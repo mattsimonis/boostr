@@ -15,7 +15,13 @@ This Google Chrome extension aims to boost productivity for Salesforce.com admin
 
 # Release History
 
-##### Latest Release Version 0.6
+##### Latest Release Version 0.7
+***
+
+- Bug - [Slowness for admin area check all](https://github.com/mattsimonis/boostr/issues/20)
+
+
+##### Version 0.6
 ***
 
 - Feature - [Admin area check all for tables](https://github.com/mattsimonis/boostr/issues/3)
