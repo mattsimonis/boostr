@@ -43,6 +43,12 @@ BfsSetupCheckAll.init = function() {
               (checkAll === false && $(checkbox).is(':checked'))) {
             toChange.push($(checkbox));
 
+            if (BfsSetupCheckAll.dependents == null ||
+                BfsSetupCheckAll.antecedents == null ||
+                BfsSetupCheckAll.map == null) {
+              return true;
+            }
+
             var opposites = checkAll ? BfsSetupCheckAll.dependents[onclickParts[3]] :
               BfsSetupCheckAll.antecedents[onclickParts[3]];
 
