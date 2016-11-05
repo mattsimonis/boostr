@@ -26,7 +26,18 @@
       ],
       "js": [
         "js/jquery.min.js",
-        "js/scripts.js",
+        "js/scripts.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*",
+        "https://*.force.com/*",
+        "https://*.cloudforce.com/*"
+      ],
+      "js": [
         "js/setupsearch.js",
         "js/setupcheckall.js"
       ]
@@ -89,6 +100,18 @@
       "js": [
         "js/addtolayout.js"
       ]
+    },
+    {
+      "matches": [
+        "https://login.salesforce.com/*",
+        "https://c.salesforce.com/login-messages/promos.html"
+      ],
+      "js": [
+        "js/loginpromo.js",
+        "js/anystretch.min.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
     }
   ],
   "options_page": "options.html",
