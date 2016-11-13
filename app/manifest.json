@@ -89,6 +89,14 @@
       "js": [
         "js/addtolayout.js"
       ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/_ui/common/apex/debug/ApexCSIPage"
+      ],
+      "js": [
+        "js/devconsole.js"
+      ]
     }
   ],
   "options_page": "options.html",
