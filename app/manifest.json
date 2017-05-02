@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Boostr for Salesforce",
   "short_name": "Boostr SF",
-  "version": "0.2",
+  "version": "0.9",
   "icons": {
     "128": "icon.png"
   },
@@ -13,6 +13,10 @@
       ],
       "persistent": false
   },
+  "web_accessible_resources": [
+    "js/fieldsetinject.js",
+    "js/setupcheckallinject.js"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -23,7 +27,8 @@
       "js": [
         "js/jquery.min.js",
         "js/scripts.js",
-        "js/setupsearch.js"
+        "js/setupsearch.js",
+        "js/setupcheckall.js"
       ]
     },
     {
@@ -63,6 +68,26 @@
       ],
       "js": [
         "js/apiname.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*FieldHistoryTracking*",
+        "https://*.force.com/*FieldHistoryTracking*",
+        "https://*.cloudforce.com/*FieldHistoryTracking*"
+      ],
+      "js": [
+        "js/fieldhistorycount.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*NewCustomFieldStageManager*",
+        "https://*.force.com/*NewCustomFieldStageManager*",
+        "https://*.cloudforce.com/*NewCustomFieldStageManager*"
+      ],
+      "js": [
+        "js/addtolayout.js"
       ]
     }
   ],
