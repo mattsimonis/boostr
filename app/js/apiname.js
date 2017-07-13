@@ -19,14 +19,14 @@ DeveloperNameInputElement.setName = function(d, c, g) {
 BfsApiName.init = function() {
   if ($('input#MasterLabel').size() === 0 ||
       ($('input#DeveloperName').size() === 0 &&
-        $('input#Name').size() === 0) || 
+        $('input#Name').size() === 0) ||
       ($('input#DeveloperName').size() > 0 &&
         $('input#DeveloperName').is(':disabled')) ||
       ($('input#Name').size() > 0 &&
         $('input#Name').is(':disabled'))) {
     return;
   }
-  
+
   $('input#MasterLabel').blur(function() {
     if ($('input#DeveloperName').size() === 1) {
       DeveloperNameInputElement.setName(this, document.getElementById('DeveloperName'), 'Field1');
