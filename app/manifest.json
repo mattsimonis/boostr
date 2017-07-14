@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Boostr for Salesforce",
   "short_name": "Boostr SF",
-  "version": "0.91",
+  "version": "0.92",
   "icons": {
     "128": "icon.png"
   },
@@ -30,7 +30,8 @@
         "js/setupsearch.js",
         "js/setupcheckall.js",
         "js/flowerrorlink.js"
-      ]
+      ],
+      "all_frames": true
     },
     {
       "matches": [
@@ -43,7 +44,8 @@
       ],
       "css": [
         "css/changeset.css"
-      ]
+      ],
+      "all_frames": true
     },
     {
       "matches": [
@@ -53,7 +55,8 @@
       ],
       "js": [
         "js/fieldset.js"
-      ]
+      ],
+      "all_frames": true
     },
     {
       "matches": [
@@ -69,7 +72,8 @@
       ],
       "js": [
         "js/apiname.js"
-      ]
+      ],
+      "all_frames": true
     },
     {
       "matches": [
@@ -89,7 +93,8 @@
       ],
       "js": [
         "js/addtolayout.js"
-      ]
+      ],
+      "all_frames": true
     }
   ],
   "options_page": "options.html",
