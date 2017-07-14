@@ -67,9 +67,11 @@
         "https://*.force.com/*101*",
         "https://*.cloudforce.com/*101*"
       ],
-      "js": [
+      "js":[
+        "js/jquery.min.js",
         "js/apiname.js"
-      ]
+      ],
+      "all_frames": true
     },
     {
       "matches": [
