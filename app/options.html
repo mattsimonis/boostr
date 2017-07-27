@@ -62,6 +62,13 @@
         </label>
         <a data-toggle="modal" data-target="#layoutuncheckallModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
       </div>
+      <div>
+          <label>
+            <input id="fieldhistorynumallowedfields" type="number" value="20" min="20">
+            Allowed Number of Field History Fields
+          </label>
+        <a data-toggle="modal" data-target="#allownumberoffieldhistoryfieldsModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
       <button id="save" type="button" class="btn btn-primary">Save</button>
 
       <h3>Additional Features</h3>
@@ -235,6 +242,31 @@
             <hr />
 
             <img style="max-width: 100%;" src="images/layoutuncheckall.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="allownumberoffieldhistoryfieldsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Allowed Number of Field History Fields</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              When setting the field history tracking fields, the specified "Allowed Number of Field History FIelds" will show as the "of X Selected". For example,
+              if 40 is entered and 5 fields are selected, the label will say "(5 of 40 selected)". By default, Salesforce allows 20 fields to be selected. However,
+              this limit can be increased by purchasing more.
+            </p>
+
+            <hr />
+
+            <img style="max-width: 100%;" src="images/fieldhistoryconfigexample.png" />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
