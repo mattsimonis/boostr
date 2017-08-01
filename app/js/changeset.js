@@ -40,7 +40,13 @@ BfsChangeSet.init = function() {
   row.append(clearButton);
 
   wrapper.append(row);
-  wrapper.insertBefore($('table.detailList').find('.listRelatedObject'))
+  wrapper.insertBefore($('table.detailList').find('.listRelatedObject'));
+
+  $('.listRelatedObject table.list tr.dataRow').on('click', function(e) {
+    if (!$(e.target).is('input:checkbox')) {
+      $(this).find('input:checkbox:first').click();
+    }
+  });
 
   $('#sfceSearchBar').keydown(function(e) {
     if (e.keyCode == 13) {
@@ -70,7 +76,7 @@ BfsChangeSet.init = function() {
     var checked = $(this).prop('checked');
     $(this).closest('table').find('tr.dataRow:visible td.actionColumn input').prop('checked', checked);
   });
-}
+};
 
 BfsChangeSet.filterTable = function() {
   var typeFilter = $('#sfceFilterType').val();
@@ -87,7 +93,7 @@ BfsChangeSet.filterTable = function() {
     }
     return true;
   }).show();
-}
+};
 
 chrome.storage.sync.get({
   'changeset': true
