@@ -152,3 +152,6 @@
   display: block;
   width: 100%;
 }
+.listRelatedObject table.list tr.dataRow:hover {
+  cursor: pointer;
+}
