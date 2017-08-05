@@ -95,6 +95,17 @@
         "js/addtolayout.js"
       ],
       "all_frames": true
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*systemOverview*",
+        "https://*.force.com/*systemOverview*",
+        "https://*.cloudforce.com/*systemOverview*"
+      ],
+      "js": [
+        "js/systemoverview.js"
+      ],
+      "all_frames": true
     }
   ],
   "options_page": "options.html",
