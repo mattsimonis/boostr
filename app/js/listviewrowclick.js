@@ -30,8 +30,10 @@ BfsListViewRowClick.addRowOnClickCheckboxEventHandlerWhenListViewRowsAdded = fun
 
         if (addedNode.className &&
             (addedNode.className.indexOf('x-grid3-row') != -1 ||
-             addedNode.className.indexOf('dataRow') != -1)) {
+             addedNode.className.indexOf('dataRow') != -1 ||
+             addedNode.className.indexOf('x-grid3-row-table') != -1)) {
           BfsListViewRowClick.addClassicRowOnClickCheckBoxEventHandler();
+          return;
         }
       }
     }
@@ -45,7 +47,7 @@ BfsListViewRowClick.addClassicRowOnClickCheckBoxEventHandler = function () {
     .on('click', BfsListViewRowClick.clickCheckboxFunction);
 
   // Object Listview Rows
-  $('.listBody table.x-grid3-row-table tr').has('td:first-child input[type="checkbox"]')
+  $('table.x-grid3-row-table tr').has('td:first-child input[type="checkbox"]')
     .on('click', BfsListViewRowClick.clickCheckboxFunction);
 }
 
