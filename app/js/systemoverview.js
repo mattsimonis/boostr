@@ -1,9 +1,28 @@
 var BfsSystemOverview = BfsSystemOverview || {};
+BfsSystemOverview.LimitInfoMap = {
+    ConcurrentAsyncGetReportInstances: { Title: "Concurrent Async Get Report Instances", Description: "Concurrent REST API requests for results of asynchronous report runs" },
+    ConcurrentSyncReportRuns: { Title: "Concurrent Sync Report Runs", Description: "Concurrent synchronous report runs via REST API" },
+    DailyAsyncApexExecutions: { Title: "Daily Async Apex Executions", Description: "Daily asynchronous Apex method executions (batch Apex, future methods, queueable Apex, and scheduled Apex)" },
+    DailyBulkApiRequests: { Title: "Daily Bulk API Requests" },
+    DailyDurableGenericStreamingApiEvents: { Title: "Daily Durable Generic Streaming Api Events" },
+    DailyDurableStreamingApiEvents: { Title: "Daily Durable Streaming Api Events" },
+    DailyGenericStreamingApiEvents: { Title: "Daily Generic Streaming Api Events", Description: "Daily generic streaming events (if generic streaming is enabled for your org)" },
+    DailyStreamingApiEvents: { Title: "Daily Streaming Api Events" },
+    DailyWorkflowEmails: { Title: "Daily Workflow Emails" },
+    DurableStreamingApiConcurrentClients: { Title: "Durable Streaming Api Concurrent Clients" },
+    HourlyAsyncReportRuns: { Title: "Hourly Async Report Runs", Description: "Hourly asynchronous report runs via REST API" },
+    HourlyDashboardRefreshes: { Title: "Hourly Dashboard Refreshes", Description: "Hourly dashboard refreshes via REST API" },
+    HourlyDashboardResults: { Title: "Hourly Dashboard Results", Description: "Hourly REST API requests for dashboard results" },
+    HourlyDashboardStatuses: { Title: "Hourly Dashboard Statuses", Description: "Hourly dashboard status requests via REST API" },
+    HourlyODataCallout: { Title: "Hourly OData Callout" },
+    HourlySyncReportRuns: { Title: "Hourly Sync Report Runs", Description: "Hourly synchronous report runs via REST API" },
+    HourlyTimeBasedWorkflow: { Title: "Hourly Time Based Workflow" },
+    MassEmail: { Title: "Mass Email", Description: "Daily number of mass emails that are sent to external email addresses by using Apex or Force.com APIs" },
+    SingleEmail: { Title: "Single Email", Description: "Daily number of single emails that are sent to external email addresses by using Apex or Force.com APIs" },
+    StreamingApiConcurrentClients: { Title: "Streaming Api Concurrent Clients" }
+};
 
 BfsSystemOverview.init = function () {
-    debugger;
-
-
     var sessionId = BfsSystemOverview.getSessionId();
     BfsSystemOverview.getOrgLimits(sessionId);
 }
@@ -21,8 +40,6 @@ BfsSystemOverview.getOrgLimits = function (sessionId) {
 }
 
 BfsSystemOverview.processOrgLimitsResponse = function (data, textStatus, jqXHR) {
-    debugger;
-
     if (textStatus == "success") {
         BfsSystemOverview.showOrgLimitsUI(data);
     } else {
@@ -31,118 +48,81 @@ BfsSystemOverview.processOrgLimitsResponse = function (data, textStatus, jqXHR) 
 }
 
 BfsSystemOverview.showOrgLimitsUI = function (orgLimits) {
-    var orgLimitsUI = '<div class="panel-container"';
+    var orgLimitsUI = '<div class="panel-container"><span><div class="panel">';
+    orgLimitsUI += '<div class="top-line"><h2>Other Org Limits </h2><img src="https://github.com/mattsimonis/boostr/blob/master/app/icon.png?raw=true" style="height:32px; width:32px; padding-left: 20px;" title="Provided by Boostr for Salesforce" /></div><div class="content"><div class="panelContent">';
+
+    var alreadyShownLimits = ['DailyApiRequests', 'DataStorageMB', 'FileStorageMB'];
+    var numberFormatter = new Intl.NumberFormat();
+
+    Object.keys(orgLimits).forEach(function(limitName, index) {
+        if (alreadyShownLimits.indexOf(limitName) != -1) {
+            return;
+        }
+
+        var limitInfo = BfsSystemOverview.LimitInfoMap[limitName];
+        var limitRemaining = orgLimits[limitName].Remaining;
+        var limitMax = orgLimits[limitName].Max;
+        var limitUsed = limitMax - limitRemaining;
+        var percentageUsed = Math.round((limitUsed / limitMax) * 100);
+        var percentageAvailable = 100 - percentageUsed;
 
 
-    orgLimitUI += '</div>';
+        var borderTopClass = 'border-top';
+        var panelWarningClass = '';
+        var barPositiveWarnClass = '';
+
+        if (index == 0) {
+            borderTopClass = '';
+        }
+
+        if (percentageUsed >= 80) {
+            panelWarningClass = 'usage-warn';
+            barPositiveWarnClass = 'bar-positive-warn';
+        }
+
+        orgLimitsUI += '<div class="panel-content-item ' + borderTopClass + ' ' + panelWarningClass + '">';
+
+        orgLimitsUI += '<div class="panelLeft">';
+
+        orgLimitsUI += '<div class="type"><span class="title">' + limitInfo.Title +
+                       '</span>';
+
+        if (limitInfo.Description) {
+            orgLimitsUI += '<div class="mouseOverInfoOuter" onfocus="addMouseOver(this)" onmouseover="addMouseOver(this)" tabindex="0">'
+                              + '<img src="/img/s.gif" alt class="infoIcon" title>'
+                              + '<div class="mouseOverInfo" style="display:none; opacity: -0.2; left: 21px;">'
+                                  + '<div class="body">' + limitInfo.Description + '</div>'
+                              + '</div>'
+                        + '</div>';
+        }
+
+        orgLimitsUI += '</div>';
+
+        orgLimitsUI += '<div class="datalink"><div class="num">' + numberFormatter.format(limitUsed) + '</div></div>';
+
+        orgLimitsUI += '<div class="floatClear" /></div>';
+
+        orgLimitsUI += '<div class="panelRight">';
+
+        orgLimitsUI += '<div class="visual"><span><div class="bar-container"><div class="bar">' +
+                         '<div class="bar-positive ' + barPositiveWarnClass + '" style="width:' + percentageUsed + 'px;"></div>' +
+                         '<div class="bar-negative" style="width:' + percentageAvailable + 'px;"></div>'
+            + '</div></div>  </span></div>';
+
+        orgLimitsUI += '<span><div align="right" class="desc"> <span class="desc-num">' + percentageUsed + '%</span>(maximum ' + numberFormatter.format(limitMax) + ')<br /></div></span>';
+
+        orgLimitsUI += '</div><div class="floatClear" />';
+
+        orgLimitsUI += '</div>';
+
+        console.log(limitName);
+    });
+
+
+
+    orgLimitsUI += '</div></div></div></span></div>';
+
+    $('#panel-board').append(orgLimitsUI);
 }
 
 BfsSystemOverview.init();
-
-/*
-<div class="panel-container">
-    <span id="j_id0:j_id12:4:j_id16">
-        <div class="panel">
-            <div class="top-line">
-                    <h2>Most Used Licenses</h2><a href="/00D0j0000000T0f#00D0j0000000T0f_RelatedUserLicenseList_target" title="Show All" class="headerLink">Show All</a>
-            </div>
-            <div class="content">
-                <div class="panelContent">
-                        <div class="panel-content-item usage-warn  ">
-                            <div class="panelLeft">
-                                <div class="type">
-                                    <span class="title">Salesforce</span>
-                                </div>
-                                <div class="datalink">
-                                    
-                                    <div class="num" id="usage_block_users_num_1"><a href="/00D0j0000000T0f#00D0j0000000T0f_RelatedUserLicenseList_target" title="Salesforce">883</a>
-                                        <span class="valueSubscript"></span>
-                                    </div>
-                                </div>
-                                <div class="floatClear"></div>
-                            </div>
-                            <div class="panelRight">
-                                <div class="visual"><span id="j_id0:j_id12:4:j_id16:j_id17:j_id24:0:j_id41">
-                                        <div class="bar-container">
-                                                <div class="bar">
-                                                    <div class="bar-positive bar-positive-warn" style="width:98px;"></div>
-                                                    <div class="bar-negative" style="width:2px;"></div>
-                                                </div>
-                                            <div class="warning-icon"><img src="/img/msg_icons/warning16.png" alt="Warning" width="16" height="16" class="warningSmall" id="j_id0:j_id12:4:j_id16:j_id17:j_id24:0:j_id43" title="Warning"></div>
-                                        </div></span>
-
-                                </div><span id="j_id0:j_id12:4:j_id16:j_id17:j_id24:0:j_id46">
-                                    
-                                    <div align="right" class="error" id="usage_block_users_error_1"><span class="warning-num">98%</span> (883 of 899)<br>Visit <a href="/ui/setup/store/AppStoreSummaryPage?setupid=AppStoreSummary">Checkout</a> to obtain additional Salesforce user licenses.
-                                    </div></span>
-                            </div>
-                            <div class="floatClear"></div>
-                        </div>
-                        <div class="panel-content-item  border-top ">
-                            <div class="panelLeft">
-                                <div class="type">
-                                    <span class="title">Chatter Free</span>
-                                </div>
-                                <div class="datalink">
-                                    
-                                    <div class="num" id="usage_block_users_num_2"><a href="/00D0j0000000T0f#00D0j0000000T0f_RelatedUserLicenseList_target" title="Chatter Free">0</a>
-                                        <span class="valueSubscript"></span>
-                                    </div>
-                                </div>
-                                <div class="floatClear"></div>
-                            </div>
-                            <div class="panelRight">
-                                <div class="visual"><span id="j_id0:j_id12:4:j_id16:j_id17:j_id24:1:j_id41">
-                                        <div class="bar-container">
-                                                <div class="bar">
-                                                    <div class="bar-positive " style="width:0px;"></div>
-                                                    <div class="bar-negative" style="width:100px;"></div>
-                                                </div>
-                                            <div class="warning-icon"></div>
-                                        </div></span>
-
-                                </div><span id="j_id0:j_id12:4:j_id16:j_id17:j_id24:1:j_id52">
-                                    <div align="right" class="desc">
-                                            <span class="desc-num">0%</span>(maximum 5,000)
-                                        <br>
-                                    </div></span>
-                            </div>
-                            <div class="floatClear"></div>
-                        </div>
-                        <div class="panel-content-item  border-top ">
-                            <div class="panelLeft">
-                                <div class="type">
-                                    <span class="title">Chatter External</span>
-                                </div>
-                                <div class="datalink">
-                                    
-                                    <div class="num" id="usage_block_users_num_3"><a href="/00D0j0000000T0f#00D0j0000000T0f_RelatedUserLicenseList_target" title="Chatter External">0</a>
-                                        <span class="valueSubscript"></span>
-                                    </div>
-                                </div>
-                                <div class="floatClear"></div>
-                            </div>
-                            <div class="panelRight">
-                                <div class="visual"><span id="j_id0:j_id12:4:j_id16:j_id17:j_id24:2:j_id41">
-                                        <div class="bar-container">
-                                                <div class="bar">
-                                                    <div class="bar-positive " style="width:0px;"></div>
-                                                    <div class="bar-negative" style="width:100px;"></div>
-                                                </div>
-                                            <div class="warning-icon"></div>
-                                        </div></span>
-
-                                </div><span id="j_id0:j_id12:4:j_id16:j_id17:j_id24:2:j_id52">
-                                    <div align="right" class="desc">
-                                            <span class="desc-num">0%</span>(maximum 500)
-                                        <br>
-                                    </div></span>
-                            </div>
-                            <div class="floatClear"></div>
-                        </div>
-                </div><span id="j_id0:j_id12:4:j_id16:j_id17:j_id60" style="display: none;"></span>
-                <div class="floatClear"></div>
-            </div>
-        </div></span>
-                </div>
-*/
