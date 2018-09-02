@@ -29,7 +29,8 @@
         "js/scripts.js",
         "js/setupsearch.js",
         "js/setupcheckall.js",
-        "js/flowerrorlink.js"
+        "js/flowerrorlink.js",
+        "js/listviewrowclick.js"
       ],
       "all_frames": true
     },
