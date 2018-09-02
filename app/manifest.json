@@ -111,9 +111,11 @@
   ],
   "options_page": "options.html",
   "permissions": [
-    "storage"
+    "storage",
+    "tabs"
   ],
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
   }
 }

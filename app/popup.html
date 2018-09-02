@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Boostr Popup</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding: 10px 0;
+      min-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="icon.png" width="32" height="32" />
+    </header>
+    <div class="form-group">
+      <label for="idField">Convert Id</label>
+      <input type="text" class="form-control" id="idContainer" placeholder="Salesforce Id">
+    </div>
+    <button id="convertButton" type="submit" class="btn btn-default">Convert</button>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+</html>
