@@ -60,6 +60,11 @@ BfsSystemOverview.showOrgLimitsUI = function (orgLimits) {
         }
 
         var limitInfo = BfsSystemOverview.LimitInfoMap[limitName];
+
+        if (limitInfo == null) {
+            return;
+        }
+
         var limitRemaining = orgLimits[limitName].Remaining;
         var limitMax = orgLimits[limitName].Max;
         var limitUsed = limitMax - limitRemaining;
