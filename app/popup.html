@@ -10,11 +10,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      margin: 10px 0px;
-    }
-    input[type='text'] {
-      font-weight: normal;
-      padding: 5px;
+      padding: 10px 0;
+      min-width: 200px;
     }
   </style>
 </head>
@@ -23,11 +20,11 @@
     <header>
       <img src="icon.png" width="32" height="32" />
     </header>
-    <label>
-      Convert Id
-      <input type="text" id="idContainer" />
-    </label>
-    <button id="convertButton">Convert</button>
+    <div class="form-group">
+      <label for="idField">Convert Id</label>
+      <input type="text" class="form-control" id="idContainer" placeholder="Salesforce Id">
+    </div>
+    <button id="convertButton" type="submit" class="btn btn-default">Convert</button>
   </div>
 
   <script src="js/jquery.min.js"></script>
