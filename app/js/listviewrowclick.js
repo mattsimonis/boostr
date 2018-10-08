@@ -29,6 +29,7 @@ BfsListViewRowClick.addRowOnClickCheckboxEventHandlerWhenListViewRowsAdded = fun
         var addedNode = mutation.addedNodes[addedNodeIndex];
 
         if (addedNode.className &&
+            typeof addedNode.className === 'string' &&
             (addedNode.className.indexOf('x-grid3-row') != -1 ||
              addedNode.className.indexOf('dataRow') != -1 ||
              addedNode.className.indexOf('x-grid3-row-table') != -1)) {
