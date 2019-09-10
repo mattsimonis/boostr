@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Boostr for Salesforce",
   "short_name": "Boostr SF",
-  "version": "0.96",
+  "version": "0.97",
   "icons": {
     "128": "icon.png"
   },
