@@ -107,6 +107,17 @@
         "js/systemoverview.js"
       ],
       "all_frames": true
+    },
+    {
+      "matches": [
+        "https://*.salesforce.com/*ApexTestQueuePage*",
+        "https://*.force.com/*ApexTestQueuePage*",
+        "https://*.cloudforce.com/*ApexTestQueuePage*"
+      ],
+      "js": [
+        "js/selectfailedtests.js"
+      ],
+      "all_frames": true
     }
   ],
   "options_page": "options.html",

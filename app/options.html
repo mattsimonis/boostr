@@ -62,6 +62,13 @@
         </label>
         <a data-toggle="modal" data-target="#layoutuncheckallModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
       </div>
+      <div class="checkbox">
+        <label>
+          <input id="selectfailedtests" type="checkbox" value="">
+          Select Failed Tests Button
+        </label>
+        <a data-toggle="modal" data-target="#selectfailedtestsModal" href="#" class="modalLink"><span class="glyphicon glyphicon-question-sign"></span></a>
+      </div>
       <div>
           <label>
             <input id="fieldhistorynumallowedfields" type="number" value="20" min="20">
@@ -220,6 +227,30 @@
             <hr />
 
             <img style="max-width: 100%;" src="images/setupcheckall.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="selectfailedtestsModal" tabindex="-1" role="dialog" aria-labelledby="selectfailedtestsModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="selectfailedtestsModalLabel">Select Failed Tests Button</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+                Adds a new button to the Apex Test Execution page called "Select Failed Tests...".
+                Clicking on this button will open the "Select Tests" modal, and select all tests that failed in the previous test run.
+            </p>
+
+            <hr />
+
+            <img style="max-width: 100%;" src="images/selectfailedtests.png" />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
