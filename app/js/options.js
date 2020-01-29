@@ -12,6 +12,7 @@ function save_options() {
   var apiname = document.getElementById('apiname').checked;
   var setupcheckall = document.getElementById('setupcheckall').checked;
   var layoutuncheckall = document.getElementById('layoutuncheckall').checked;
+  var selectfailedtests = document.getElementById('selectfailedtests').checked;
   var fieldhistorynumallowedfields = document.getElementById('fieldhistorynumallowedfields').value;
   
   chrome.storage.sync.set({
@@ -21,6 +22,7 @@ function save_options() {
     apiname: apiname,
     setupcheckall: setupcheckall,
     layoutuncheckall: layoutuncheckall,
+    selectfailedtests: selectfailedtests,
     fieldhistorynumallowedfields: fieldhistorynumallowedfields
   }, function() {
     // Update status to let user know options were saved.
@@ -42,6 +44,7 @@ function restore_options() {
     apiname: false,
     setupcheckall: true,
     layoutuncheckall: false,
+    selectfailedtests: true,
     fieldhistorynumallowedfields: 20
   }, function (items) {
     document.getElementById('changeset').checked = items.changeset;
@@ -50,6 +53,7 @@ function restore_options() {
     document.getElementById('apiname').checked = items.apiname;
     document.getElementById('setupcheckall').checked = items.setupcheckall;
     document.getElementById('layoutuncheckall').checked = items.layoutuncheckall;
+    document.getElementById('selectfailedtests').checked = items.selectfailedtests;
     document.getElementById('fieldhistorynumallowedfields').value = items.fieldhistorynumallowedfields;
   });
 }
