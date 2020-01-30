@@ -32,7 +32,7 @@ BfsSetupSearch.lightningInit = function() {
 
 BfsSetupSearch.handleLightningInput = function(input) {
   input.addEventListener('blur', event => {
-    if (event.relatedTarget.matches('body.desktop')) {
+    if (event.relatedTarget && event.relatedTarget.matches('body.desktop')) {
       setTimeout(() => {
         input.focus();
       });

@@ -60,4 +60,10 @@ BfsSelectFailedTests.checkFailedTests = function() {
   }
 };
 
-BfsSelectFailedTests.init();
+chrome.storage.sync.get({
+  'selectfailedtests': true
+}, function(item) {
+  if (item.selectfailedtests === true) {
+    BfsSelectFailedTests.init();
+  }
+});
