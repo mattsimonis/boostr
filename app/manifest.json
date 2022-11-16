@@ -1,22 +1,23 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Boostr for Salesforce",
   "short_name": "Boostr SF",
-  "version": "0.98",
+  "version": "0.99",
   "icons": {
     "128": "icon.png"
   },
   "author": "Matt Simonis",
-  "background": {
-      "scripts": [
-        "js/background.js"
-      ],
-      "persistent": false
-  },
-  "web_accessible_resources": [
-    "js/fieldsetinject.js",
-    "js/setupcheckallinject.js"
-  ],
+  "web_accessible_resources": [{
+    "resources": [
+      "js/fieldsetinject.js",
+      "js/setupcheckallinject.js"
+    ],
+    "matches": [
+      "https://*.salesforce.com/*",
+      "https://*.force.com/*",
+      "https://*.cloudforce.com/*"
+    ]
+  }],
   "content_scripts": [
     {
       "matches": [
@@ -125,7 +126,7 @@
     "storage",
     "tabs"
   ],
-  "browser_action": {
+  "action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   }

@@ -1,8 +1,9 @@
 var BfsFieldset = BfsFieldset || {};
+BfsFieldset.isAppending = false;
 
 BfsFieldset.init = function() {
   var s = document.createElement('script');
-  s.src = chrome.extension.getURL('js/fieldsetinject.js');
+  s.src = chrome.runtime.getURL('js/fieldsetinject.js');
   document.head.appendChild(s);
 
   window.addEventListener('BfsFieldSetDataEvent', function (e) {
@@ -11,8 +12,10 @@ BfsFieldset.init = function() {
 
     BfsFieldset.appendApiName();
 
-    $('.fieldset-singlesection-ct').bind('DOMSubtreeModified', function() {
-      BfsFieldset.appendApiName();
+    $('.fieldset-subsection-ct').bind('DOMSubtreeModified', function() {
+      if (BfsFieldset.isAppending === false) {
+        BfsFieldset.appendApiName();
+      }
     });
   });
 };
@@ -32,7 +35,8 @@ BfsFieldset.getField = function(id) {
 }
 
 BfsFieldset.appendApiName = function() {
-  $('.fieldset-singlesection-ct').find('div[id^="fieldsetItem_"]').each(function(i, el) {
+  BfsFieldset.isAppending = true;
+  $('.fieldset-subsection-ct').find('div[id^="fieldsetItem_"]').each(function(i, el) {
     if ($(el).find('span.bfs-api-name').size() > 0) {
       return true;
     }
@@ -54,6 +58,7 @@ BfsFieldset.appendApiName = function() {
       $(fieldNameEl).append('<span class="bfs-api-name"> (' + fieldName + ')</span>');
     }
   });
+  BfsFieldset.isAppending = false;
 };
 
 chrome.storage.sync.get({

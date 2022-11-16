@@ -2,7 +2,7 @@ var BfsSetupCheckAll = BfsSetupCheckAll || {};
 
 BfsSetupCheckAll.init = function() {
   var s = document.createElement('script');
-  s.src = chrome.extension.getURL('js/setupcheckallinject.js');
+  s.src = chrome.runtime.getURL('js/setupcheckallinject.js');
   document.head.appendChild(s);
 
   window.addEventListener('BfsSetupCheckAllEvent', function (e) {
@@ -159,7 +159,7 @@ chrome.storage.sync.get({
   'setupcheckall': true
 }, function(item) {
   if (item.setupcheckall === true) {
-    if ($('div.quickfindContainer input#setupSearch').size() > 0) {
+    if ($('.sfdcBody').size() > 0) {
       BfsSetupCheckAll.init();
     }
   }
