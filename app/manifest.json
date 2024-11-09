@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Boostr for Salesforce",
   "short_name": "Boostr SF",
-  "version": "0.99",
+  "version": "0.999",
   "icons": {
     "128": "icon.png"
   },
@@ -15,7 +15,8 @@
     "matches": [
       "https://*.salesforce.com/*",
       "https://*.force.com/*",
-      "https://*.cloudforce.com/*"
+      "https://*.cloudforce.com/*",
+      "https://*.salesforce-setup.com/*"
     ]
   }],
   "content_scripts": [
@@ -23,7 +24,8 @@
       "matches": [
         "https://*.salesforce.com/*",
         "https://*.force.com/*",
-        "https://*.cloudforce.com/*"
+        "https://*.cloudforce.com/*",
+        "https://*.salesforce-setup.com/*"
       ],
       "js": [
         "js/jquery.min.js",
@@ -39,7 +41,8 @@
       "matches": [
         "https://*.salesforce.com/*AddToPackageFromChangeMgmtUi*",
         "https://*.force.com/*AddToPackageFromChangeMgmtUi*",
-        "https://*.cloudforce.com/*AddToPackageFromChangeMgmtUi*"
+        "https://*.cloudforce.com/*AddToPackageFromChangeMgmtUi*",
+        "https://*.salesforce-setup.com/*AddToPackageFromChangeMgmtUi*"
       ],
       "js": [
         "js/changeset.js"
@@ -53,7 +56,8 @@
       "matches": [
         "https://*.salesforce.com/*FieldSetEditor*",
         "https://*.force.com/*FieldSetEditor*",
-        "https://*.cloudforce.com/*FieldSetEditor*"
+        "https://*.cloudforce.com/*FieldSetEditor*",
+        "https://*.salesforce-setup.com/*FieldSetEditor*"
       ],
       "js": [
         "js/fieldset.js"
@@ -65,12 +69,15 @@
         "https://*.salesforce.com/*CustomObjects*",
         "https://*.force.com/*CustomObjects*",
         "https://*.cloudforce.com/*CustomObjects*",
+        "https://*.salesforce-setup.com/*CustomObjects*",
         "https://*.salesforce.com/*NewCustomFieldStageManager*",
         "https://*.force.com/*NewCustomFieldStageManager*",
         "https://*.cloudforce.com/*NewCustomFieldStageManager*",
+        "https://*.salesforce-setup.com/*NewCustomFieldStageManager*",
         "https://*.salesforce.com/*101*",
         "https://*.force.com/*101*",
-        "https://*.cloudforce.com/*101*"
+        "https://*.cloudforce.com/*101*",
+        "https://*.salesforce-setup.com/*101*"
       ],
       "js": [
         "js/apiname.js"
@@ -81,7 +88,8 @@
       "matches": [
         "https://*.salesforce.com/*FieldHistoryTracking*",
         "https://*.force.com/*FieldHistoryTracking*",
-        "https://*.cloudforce.com/*FieldHistoryTracking*"
+        "https://*.cloudforce.com/*FieldHistoryTracking*",
+        "https://*.salesforce-setup.com/*FieldHistoryTracking*"
       ],
       "js": [
         "js/fieldhistorycount.js"
@@ -91,7 +99,8 @@
       "matches": [
         "https://*.salesforce.com/*NewCustomFieldStageManager*",
         "https://*.force.com/*NewCustomFieldStageManager*",
-        "https://*.cloudforce.com/*NewCustomFieldStageManager*"
+        "https://*.cloudforce.com/*NewCustomFieldStageManager*",
+        "https://*.salesforce-setup.com/*NewCustomFieldStageManager*"
       ],
       "js": [
         "js/addtolayout.js"
@@ -102,7 +111,8 @@
       "matches": [
         "https://*.salesforce.com/*systemOverview*",
         "https://*.force.com/*systemOverview*",
-        "https://*.cloudforce.com/*systemOverview*"
+        "https://*.cloudforce.com/*systemOverview*",
+        "https://*.salesforce-setup.com/*systemOverview*"
       ],
       "js": [
         "js/systemoverview.js"
@@ -113,7 +123,8 @@
       "matches": [
         "https://*.salesforce.com/*ApexTestQueuePage*",
         "https://*.force.com/*ApexTestQueuePage*",
-        "https://*.cloudforce.com/*ApexTestQueuePage*"
+        "https://*.cloudforce.com/*ApexTestQueuePage*",
+        "https://*.salesforce-setup.com/*ApexTestQueuePage*"
       ],
       "js": [
         "js/selectfailedtests.js"
